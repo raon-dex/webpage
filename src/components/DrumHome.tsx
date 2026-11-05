@@ -23,14 +23,10 @@ export default function DrumHome() {
         <SoundToggle />
       </header>
       <main id="main-content" className="drum-home-main page-width">
-        <div className="drum-home-intro"><span className="eyebrow">RESEARCHER. BUILDER. DRUMMER.</span><h1>Welcome to my world.</h1><p>Pick a drum. Find a little more about me.</p></div>
+        <div className="drum-home-intro"><span className="eyebrow">RESEARCHER. BUILDER. DRUMMER.</span><h1>Hajun Kim</h1><p>Pick a drum. Find a little more about me.</p></div>
         <nav className="home-kit" aria-label="Drum navigation">
-          <svg className="home-stands" viewBox="0 0 800 440" aria-hidden="true">
-            <ellipse cx="400" cy="378" rx="330" ry="34" fill="#eee7d5" />
-            <g fill="none" stroke="#a69c88" strokeWidth="4">
-              <path d="M125 125v215m0-37-34 52m34-52 34 52M655 115v230m0-40-38 50m38-50 38 50M370 150v100M230 240v105m0-20-30 35m30-35 30 35" />
-            </g>
-            <path d="M385 369h34v35h-34Z" fill="#b3aa94" stroke="#493c2c" strokeWidth="3" />
+          <svg className="home-stands" viewBox="0 0 800 460" preserveAspectRatio="none" aria-hidden="true">
+            <ellipse cx="400" cy="406" rx="320" ry="30" fill="#eee7d5" />
           </svg>
           {menu.map((item) => (
             <Link key={item.name} href={item.href} className={`home-drum home-drum-${item.position}`} aria-label={`${item.name} — ${item.instrument}`} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) play(item.sound); }}>
