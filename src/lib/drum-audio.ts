@@ -1,4 +1,4 @@
-export type DrumSound = "kick" | "snare" | "tom" | "crash" | "ride";
+export type DrumSound = "kick" | "snare" | "tom" | "crash" | "ride" | "hihat";
 
 // Short, synthesized percussion: no media downloads or autoplay.
 export async function playDrum(context: AudioContext, sound: DrumSound) {
@@ -8,7 +8,7 @@ export async function playDrum(context: AudioContext, sound: DrumSound) {
   const output = context.createGain();
   output.gain.value = 0.18;
   output.connect(context.destination);
-  const duration = sound === "crash" ? 0.8 : sound === "ride" ? 0.5 : 0.3;
+  const duration = sound === "crash" ? 0.8 : sound === "ride" ? 0.5 : sound === "hihat" ? 0.12 : 0.3;
   let sources = 0;
   const finish = () => { if (--sources === 0) output.disconnect(); };
   if (sound === "kick" || sound === "tom" || sound === "snare") {
@@ -25,7 +25,7 @@ export async function playDrum(context: AudioContext, sound: DrumSound) {
     oscillator.start(now);
     oscillator.stop(now + duration);
   }
-  if (sound === "snare" || sound === "crash" || sound === "ride") {
+  if (sound === "snare" || sound === "crash" || sound === "ride" || sound === "hihat") {
     const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * duration), context.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;

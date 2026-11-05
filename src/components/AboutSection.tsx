@@ -5,7 +5,7 @@ export default function AboutSection() {
     <section id="about" className="about-section page-width section-space" aria-labelledby="about-title">
       <div className="section-heading">
         <span className="eyebrow">01 / ABOUT</span>
-        <h2 id="about-title">Curious by nature.<br />A builder at heart.</h2>
+        <h1 id="about-title">Curious by nature.<br />A builder at heart.</h1>
       </div>
       <div className="about-copy">
         <div className="about-identity">

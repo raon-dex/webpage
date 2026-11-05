@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { DrumSoundProvider } from "@/components/DrumSoundProvider";
 
 export const metadata: Metadata = {
   title: "HAJUN'S WORLD",
@@ -12,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body><DrumSoundProvider>{children}</DrumSoundProvider></body>
     </html>
   );
 }

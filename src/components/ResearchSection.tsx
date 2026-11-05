@@ -9,7 +9,7 @@ export default function ResearchSection() {
     <section className="research-section page-width section-space" id="research" aria-labelledby="research-title">
       <div className="section-heading">
         <span className="eyebrow">02 / RESEARCH</span>
-        <h2 id="research-title">Questions worth<br />exploring.</h2>
+        <h1 id="research-title">Questions worth<br />exploring.</h1>
         <p>Safer models. Clearer signals.<br />A few questions I keep coming back to.</p>
       </div>
       <div className="research-list">
