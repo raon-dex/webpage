@@ -36,9 +36,8 @@ export default function SkillsSection({ heading: Heading = "h1" }: { heading?: "
   return (
     <section id="skills" className="portfolio-section skills-section page-width section-space" aria-labelledby="skills-title" tabIndex={-1}>
       <div className="section-heading skills-heading">
-        <span className="eyebrow">02 / SKILLS</span>
-        <Heading id="skills-title">Every key has a story.</Heading>
-        <p>Press a key to explore my skills.</p>
+        <Heading id="skills-title">SKILLS</Heading>
+        <p>피아노를 연주하며 저의 능력을 확인해보세요!</p>
         <Music2 className="skills-heading-note" aria-hidden="true" />
       </div>
       <div className="skills-piano-scroll">

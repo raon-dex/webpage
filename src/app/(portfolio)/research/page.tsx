@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
-import ResearchSection from "@/components/ResearchSection";
-export const metadata: Metadata = { title: "Research · HAJUN'S WORLD" };
-export default function ResearchPage() { return <ResearchSection />; }
+import { redirect } from "next/navigation";
+
+export default function ResearchPage() {
+  redirect("/works");
+}

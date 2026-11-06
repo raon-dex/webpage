@@ -508,11 +508,90 @@ body { font-size:15px; word-break:keep-all; overflow-wrap:break-word; }
 .drum-home-menu a:is(:hover, :focus-visible) { color: var(--green); }
 .drum-home-design .drum-home-main { min-height: calc(100svh - var(--drum-home-bar-height)); padding-block: 8px 22px; }
 .drum-home-design button.home-drum { padding: 0; border: 0; background: none; cursor: pointer; }
-.drum-home-sections { padding-top: clamp(40px, 8vw, 96px); }
-.drum-home-sections > section { scroll-margin-top: calc(var(--drum-home-bar-height) + 24px); }
 .drum-home-sections > .portfolio-section {
+  position: relative;
+  isolation: isolate;
   min-height: calc(100svh - var(--drum-home-bar-height));
-  border-top: 1px solid var(--line);
+  scroll-margin-top: var(--drum-home-bar-height);
+}
+.drum-home-sections > .portfolio-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+  background: var(--section-background, #fffdf9);
+  pointer-events: none;
+}
+.drum-home-sections > #skills { --section-background: #f2c75d; }
+.drum-home-sections > #works { --section-background: #24272c; }
+.drum-home-sections > #contact { --section-background: #dce7d4; }
+.drum-home-sections > #skills :is(.skills-heading .eyebrow, .skills-heading p, .skills-heading-note, .skills-scroll-hint) {
+  color: #493c2c;
+}
+.drum-home-sections > #works .launchpad-heading { color: #fff9eb; }
+.drum-home-sections > #works .launchpad-heading .eyebrow { color: #c1d5b5; }
+.drum-home-sections > #works .launchpad-heading p { color: #e0dad1; }
+.about-record-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 7vw, 88px);
+}
+.about-turntable { width: min(100%, 440px); justify-self: center; }
+.about-turntable-art { display: block; width: 100%; }
+.about-turntable-art text { font: 600 10px var(--font-pixel); }
+.about-record-disc { transform-origin: 119px 106px; }
+.about-tonearm { transform-origin: 251px 58px; }
+.about-turntable[data-playing="true"] .about-tonearm { transform: rotate(42deg); }
+.about-record-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px auto 0;
+  padding: 7px 14px;
+  border: 1px solid #76503b;
+  background: #fff7e7;
+  cursor: pointer;
+}
+.about-record-button:hover,
+.about-turntable[data-playing="true"] .about-record-button { background: #e2edcb; }
+.about-record-error { margin-top: 8px; text-align: center; font-size: 13px; }
+.about-liner-notes {
+  display: grid;
+  gap: clamp(24px, 4vw, 42px);
+  padding: clamp(20px, 3vw, 36px);
+  background: #f5eee0;
+}
+.about-side-label {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #dce7d4;
+  color: var(--green);
+  font: 600 13px var(--font-pixel);
+  letter-spacing: .08em;
+}
+.about-record-copy :is(h1, h2) { margin-top: 8px; }
+.about-record-copy p + p { margin-top: 14px; }
+.about-experience :is(h2, h3) { margin-top: 8px; font-size: clamp(22px, 3vw, 30px); font-weight: 700; }
+.about-experience-tracks {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 0;
+  padding-inline-start: 26px;
+  list-style: decimal-leading-zero;
+}
+.about-experience-tracks li::marker { color: var(--green); font: 600 14px var(--font-pixel); }
+.about-experience-tracks p { margin-top: 4px; font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .about-tonearm { transition: transform 280ms ease; }
+  .about-record-disc { animation: about-record-spin 5s linear infinite paused; }
+  .about-turntable[data-playing="true"] .about-record-disc { animation-play-state: running; }
+}
+@keyframes about-record-spin { to { transform: rotate(360deg); } }
+@media (max-width: 650px) {
+  .about-record-section { grid-template-columns: 1fr; }
 }
 .skills-heading { position: relative; margin-bottom: 24px; }
 .skills-heading .eyebrow { color: var(--green); font-weight: 700; }

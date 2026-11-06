@@ -4,17 +4,16 @@ import Image from "next/image";
 import { useState } from "react";
 import { projects } from "@/data/projects";
 
-export default function ProjectsSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
+export default function WorksSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   const [selected, setSelected] = useState(() => projects.find((project) => project.featured) ?? projects[0]);
 
   return (
-    <section id="projects" className="portfolio-section page-width section-space" aria-labelledby="projects-title" tabIndex={-1}>
+    <section id="works" className="portfolio-section page-width section-space" aria-labelledby="works-title" tabIndex={-1}>
       <div className="section-heading launchpad-heading">
-        <span className="eyebrow">03 / PROJECTS</span>
-        <Heading id="projects-title">Projects</Heading>
-        <p>Pick a pad to explore a project.</p>
+        <Heading id="works-title">Works</Heading>
+        <p>런치패드를 클릭하셔서 저의 Project와 Research를 확인해보세요!</p>
       </div>
-      <div className="project-launchpad" role="group" aria-label="Project launchpad">
+      <div className="project-launchpad" role="group" aria-label="Works launchpad">
         {projects.map((project) => (
           <button
             key={project.title}

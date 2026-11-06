@@ -11,9 +11,9 @@ const homeTitle = "Hajun Kim";
 const menu: { name: string; instrument: string; sound: DrumSound; section?: string; position: string }[] = [
   { name: "About", instrument: "Hi-hat", sound: "hihat", section: "about", position: "hihat" },
   { name: "Skills", instrument: "Snare", sound: "snare", section: "skills", position: "snare" },
-  { name: "Projects", instrument: "Crash", sound: "crash", section: "projects", position: "crash" },
-  { name: "Research", instrument: "High tom", sound: "tom", section: "research", position: "tom" },
+  { name: "Works", instrument: "Crash", sound: "crash", section: "works", position: "crash" },
   { name: "Contact", instrument: "Kick", sound: "kick", section: "contact", position: "kick" },
+  { name: "High Tom", instrument: "High tom", sound: "tom", position: "tom" },
   { name: "Mid Tom", instrument: "Mid tom", sound: "midTom", position: "mid-tom" },
   { name: "Low Tom", instrument: "Floor tom", sound: "lowTom", position: "low-tom" },
   { name: "Ride", instrument: "Ride cymbal", sound: "ride", position: "ride" },
