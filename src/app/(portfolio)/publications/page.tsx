@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
-import { PublicationsSection } from "@/components/RemainingSections";
 export const metadata: Metadata = { title: "Publications · HAJUN'S WORLD" };
-export default function PublicationsPage() { return <PublicationsSection />; }
+export default function PublicationsPage() {
+  return <section className="page-width section-space"><h1>Publications</h1></section>;
+}

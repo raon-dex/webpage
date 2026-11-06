@@ -3,26 +3,43 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { playDrum, type DrumSound } from "@/lib/drum-audio";
+import { playPianoNote } from "@/lib/piano-audio";
 
-const SoundContext = createContext<{ muted: boolean; unavailable: boolean; toggle: () => void; play: (sound: DrumSound) => void }>({ muted: false, unavailable: false, toggle: () => {}, play: () => {} });
+const SoundContext = createContext<{
+  muted: boolean;
+  unavailable: boolean;
+  toggle: () => void;
+  play: (sound: DrumSound) => void;
+  playNote: (semitone: number) => void;
+}>({ muted: false, unavailable: false, toggle: () => {}, play: () => {}, playNote: () => {} });
 
 export function DrumSoundProvider({ children }: { children: React.ReactNode }) {
   const [muted, setMuted] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
   const audio = useRef<AudioContext | null>(null);
   useEffect(() => () => { void audio.current?.close().catch(() => {}); }, []);
-  function play(sound: DrumSound) {
+  function playAudio(start: (context: AudioContext) => Promise<void>) {
     if (muted) return;
     try {
       audio.current ??= new AudioContext();
-      void playDrum(audio.current, sound).catch(() => setUnavailable(true));
+      void start(audio.current).catch(() => setUnavailable(true));
     } catch { setUnavailable(true); }
   }
   function toggle() {
     setMuted(!muted);
     if (!muted) void audio.current?.suspend().catch(() => {});
   }
-  return <SoundContext.Provider value={{ muted, unavailable, toggle, play }}>{children}</SoundContext.Provider>;
+  return (
+    <SoundContext.Provider value={{
+      muted,
+      unavailable,
+      toggle,
+      play: (sound) => playAudio((context) => playDrum(context, sound)),
+      playNote: (semitone) => playAudio((context) => playPianoNote(context, semitone)),
+    }}>
+      {children}
+    </SoundContext.Provider>
+  );
 }
 
 export const useDrumSound = () => useContext(SoundContext);
