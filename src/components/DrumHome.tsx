@@ -77,7 +77,7 @@ export default function DrumHome() {
               </span>
             )}
           </h1>
-          <p>드럼을 연주하시면 저에 대한 더 많은 정보를 확인하실 수 있습니다. 마음껏 연주해주세요!</p>
+          <p>드럼을 연주하시면 저에 대한 더 많은 정보를 확인하실 수 있습니다. 마음껏 연주해보세요!</p>
         </div>
         <nav className="home-kit" aria-label="Drum navigation">
           <svg className="home-stands" viewBox="0 0 800 460" preserveAspectRatio="none" aria-hidden="true">
