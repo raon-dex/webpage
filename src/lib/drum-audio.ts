@@ -1,4 +1,6 @@
-export type DrumSound = "kick" | "snare" | "tom" | "crash" | "ride" | "hihat";
+export type DrumSound = "kick" | "snare" | "tom" | "midTom" | "lowTom" | "crash" | "ride" | "hihat";
+
+const pitches = { kick: [145, 42], snare: [180, 90], tom: [240, 85], midTom: [190, 70], lowTom: [150, 55] } as const;
 
 // Short, synthesized percussion: no media downloads or autoplay.
 export async function playDrum(context: AudioContext, sound: DrumSound) {
@@ -11,11 +13,12 @@ export async function playDrum(context: AudioContext, sound: DrumSound) {
   const duration = sound === "crash" ? 0.8 : sound === "ride" ? 0.5 : sound === "hihat" ? 0.12 : 0.3;
   let sources = 0;
   const finish = () => { if (--sources === 0) output.disconnect(); };
-  if (sound === "kick" || sound === "tom" || sound === "snare") {
+  if (sound === "kick" || sound === "snare" || sound === "tom" || sound === "midTom" || sound === "lowTom") {
     const oscillator = context.createOscillator();
     const envelope = context.createGain();
-    oscillator.frequency.setValueAtTime(sound === "kick" ? 145 : sound === "tom" ? 240 : 180, now);
-    oscillator.frequency.exponentialRampToValueAtTime(sound === "kick" ? 42 : sound === "tom" ? 85 : 90, now + 0.18);
+    const [attack, tail] = pitches[sound];
+    oscillator.frequency.setValueAtTime(attack, now);
+    oscillator.frequency.exponentialRampToValueAtTime(tail, now + 0.18);
     envelope.gain.setValueAtTime(sound === "snare" ? 0.4 : 1, now);
     envelope.gain.exponentialRampToValueAtTime(0.001, now + duration);
     oscillator.connect(envelope);

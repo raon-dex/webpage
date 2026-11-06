@@ -13,7 +13,7 @@ export default function DrumArtwork({ sound }: { sound: DrumSound }) {
         </g>
         <g stroke="#493c2c" strokeWidth="2.5" strokeLinejoin="miter">
           {sound === "hihat" && <path d="M20 66h20v-6h120v6h20v8h-20v5H40v-5H20Z" fill="#aa8747" />}
-          <path d="M12 49h22v-7h41v-9h50v9h41v7h22v12h-22v7H34v-7H12Z" fill="#d7b770" />
+          <path d="M12 49h22v-7h41v-9h50v9h41v7h22v12h-22v7H34v-7H12Z" fill={sound === "ride" ? "#c69d55" : "#d7b770"} />
           <path d="M29 53h142M48 44h104" stroke="#f5dfa0" strokeWidth="4" />
           <path d="M82 43v-9h10v-6h16v6h10v9Z" fill="#b18c4e" />
           <path d="M100 20v16" strokeWidth="4" />
@@ -28,7 +28,6 @@ export default function DrumArtwork({ sound }: { sound: DrumSound }) {
           <path d="M133 176h14v5h5v14h-5v5h-14v-5h-5v-14h5Z" fill="#493c2c" stroke="none" />
           <g fill="#d4c9ad"><path d="M47 84h8v13h-8Zm101 5h8v13h-8ZM17 126h10v8H17Zm151 0h10v8h-10ZM24 187h10v8H24Zm139 0h10v8h-10ZM52 213h8v13h-8Zm90 0h8v13h-8Z" /></g>
           <path d="M37 201l-17 28h-9m150-28 17 28h9" fill="none" stroke="#797562" strokeWidth="5" />
-          <path d="M92 229h22v8H92Z" fill="#aaa18c" />
         </g>
       ) : sound === "snare" ? <>
         <g fill="none" stroke="#958d7c" strokeWidth="3">
@@ -45,8 +44,9 @@ export default function DrumArtwork({ sound }: { sound: DrumSound }) {
           <path d="M46 63v16m35-16v21m40-21v21m38-21v16" stroke="#e4dfd0" strokeWidth="2" />
         </g>
       </> : <>
-        <g fill="none" stroke="#958d7c" strokeWidth="4"><path d="M100 115v82l28 24m-28-24-26 24" /><path d="M102 137v55" stroke="#ded7c7" strokeWidth="2" /></g>
-        <g stroke="#493c2c" strokeWidth="2.5">
+        {sound === "lowTom" && <g fill="none" stroke="#958d7c" strokeWidth="4"><path d="M45 104l-9 96h-9m123-96 12 96h9m-70-95v79" /></g>}
+        {sound === "tom" && <g fill="#958d7c" stroke="#493c2c" strokeWidth="2"><path d="M100 113h9v11h14v9h-23Z" /></g>}
+        <g stroke="#493c2c" strokeWidth="2.5" transform={sound === "lowTom" ? "scale(1 1.32)" : undefined}>
           <path d="M32 42h136v63h-12v10H44v-10H32Z" fill="#a7785e" />
           <path d="M34 53h132M44 104h112" stroke="#dacbb1" strokeWidth="5" />
           <path d="M29 27h19v-8h104v8h19v23h-19v8H48v-8H29Z" fill="#f1ebdc" />
