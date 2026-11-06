@@ -24,7 +24,6 @@ export default function DrumArtwork({ sound }: { sound: DrumSound }) {
           <path d="M60 73h77v8h22v12h14v22h9v75h-9v22h-14v12h-22v8H60v-8H38v-12H24v-22h-9v-75h9V93h14V81h22Z" fill="#bc8d6c" />
           <path d="M64 82h69v8h20v12h13v18h8v65h-8v20h-13v11h-20v8H64v-8H44v-11H31v-20h-8v-65h8v-18h13V90h20Z" fill="#f5efde" />
           <path d="M67 88h63v7h20v12h10v15h7" fill="none" stroke="#fffaf0" strokeWidth="3" />
-          <path d="M80 148h10v-10h10v-10h10v10h10v10h10v10h-10v-10h-10v-10h-10v10H90v10H80Z" fill="#8daa83" stroke="none" />
           <path d="M133 176h14v5h5v14h-5v5h-14v-5h-5v-14h5Z" fill="#493c2c" stroke="none" />
           <g fill="#d4c9ad"><path d="M47 84h8v13h-8Zm101 5h8v13h-8ZM17 126h10v8H17Zm151 0h10v8h-10ZM24 187h10v8H24Zm139 0h10v8h-10ZM52 213h8v13h-8Zm90 0h8v13h-8Z" /></g>
           <path d="M37 201l-17 28h-9m150-28 17 28h9" fill="none" stroke="#797562" strokeWidth="5" />

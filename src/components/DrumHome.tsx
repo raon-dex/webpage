@@ -8,6 +8,8 @@ import DrumArtwork from "@/components/DrumArtwork";
 import { SoundToggle, useDrumSound } from "@/components/DrumSoundProvider";
 import type { DrumSound } from "@/lib/drum-audio";
 
+const homeTitle = "Hajun Kim";
+
 const menu: { name: string; instrument: string; sound: DrumSound; href: string; position: string }[] = [
   { name: "About", instrument: "Hi-hat", sound: "hihat", href: "/about", position: "hihat" },
   { name: "Projects", instrument: "High tom", sound: "tom", href: "/projects", position: "tom" },
@@ -25,21 +27,61 @@ export default function DrumHome() {
   const [struck, setStruck] = useState<DrumSound | null>(null);
   const navigationTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [pedalHits, setPedalHits] = useState(0);
+  const [typedLength, setTypedLength] = useState<number | null>(null);
+
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer: ReturnType<typeof setTimeout>;
+
+    function type(length: number) {
+      setTypedLength(length);
+      timer = setTimeout(
+        () => type(length === homeTitle.length ? 0 : length + 1),
+        length === homeTitle.length ? 2200 : 140,
+      );
+    }
+
+    function syncMotion() {
+      clearTimeout(timer);
+      if (motion.matches) setTypedLength(null);
+      else type(0);
+    }
+
+    syncMotion();
+    motion.addEventListener("change", syncMotion);
+    return () => {
+      clearTimeout(timer);
+      motion.removeEventListener("change", syncMotion);
+    };
+  }, []);
 
   useEffect(() => () => {
     if (navigationTimer.current !== null) clearTimeout(navigationTimer.current);
   }, []);
   return (
-    <div className="drum-home">
+    <div className="drum-home drum-home-design">
       <header className="drum-home-header page-width">
         <Link href="/" className="brand" aria-label="HAJUN'S WORLD home"><Terminal size={22} aria-hidden="true" /><span>HAJUN&apos;S WORLD</span></Link>
         <SoundToggle />
       </header>
       <main id="main-content" className="drum-home-main page-width">
-        <div className="drum-home-intro"><span className="eyebrow">RESEARCHER. BUILDER. DRUMMER.</span><h1>Hajun Kim</h1><p>Pick a drum. Find a little more about me.</p></div>
+        <div className="drum-home-intro">
+          <span className="eyebrow">AI Researcher | Software Engineer</span>
+          <h1 aria-label={homeTitle}>
+            <span aria-hidden="true" className={typedLength === null ? undefined : "home-title-placeholder"}>
+              {homeTitle}
+            </span>
+            {typedLength !== null && (
+              <span className="home-title-typing" aria-hidden="true">
+                {homeTitle.slice(0, typedLength)}<span className="home-title-cursor">_</span>
+              </span>
+            )}
+          </h1>
+          <p>드럼을 연주하시면 저에 대한 더 많은 정보를 확인하실 수 있습니다. 마음껏 연주해주세요!</p>
+        </div>
         <nav className="home-kit" aria-label="Drum navigation">
           <svg className="home-stands" viewBox="0 0 800 460" preserveAspectRatio="none" aria-hidden="true">
-            <ellipse cx="400" cy="406" rx="320" ry="30" fill="#eee7d5" />
+            <ellipse cx="400" cy="406" rx="340" ry="29" fill="var(--design-stage)" />
           </svg>
           {menu.map((item) => (
             <Link
@@ -100,7 +142,6 @@ export default function DrumHome() {
             </svg>
           </button>
         </nav>
-        <p className="home-sound-note" role="status">{unavailable ? "Sound is unavailable. You can still explore every page." : "A small sound with every hello. Nothing plays until you tap."}</p>
       </main>
       <footer className="drum-home-footer page-width">
         <span>Kim Hajun · One pixel at a time.</span>

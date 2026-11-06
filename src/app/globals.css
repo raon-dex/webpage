@@ -386,7 +386,7 @@ body { font-size:15px; word-break:keep-all; overflow-wrap:break-word; }
   }
 }
 @keyframes home-drum-hit {
-  30% { transform:translateY(5px); }
+  30% { translate:0 5px; }
 }
 .home-drum-kick .home-drum-label { top:31%; }
 .home-kick-pedal { position:absolute; left:51%; top:76%; width:12%; min-width:54px; transform:translateX(-50%); padding:0; border:0; background:none; color:inherit; cursor:pointer; z-index:4; }
@@ -485,4 +485,46 @@ body { font-size:15px; word-break:keep-all; overflow-wrap:break-word; }
   .about-game-profile img { width: 84px; height: 84px; }
   .about-game-stats li { grid-template-columns: 1.2fr 1fr; }
   .about-game-stats small { grid-column: 1 / -1; }
+}
+
+/* Alternate home art direction. */
+.drum-home-design {
+  --design-stage: #eae1d3;
+  --design-ink: #281b10;
+  background: radial-gradient(ellipse at center, #fffdf9, #f9f6f2 80%);
+  color: var(--design-ink);
+  overflow: clip;
+}
+.drum-home-design .page-width { width: min(94%, 1440px); max-width: none; }
+.drum-home-design .drum-home-header { min-height: 64px; }
+.drum-home-design .drum-home-main { position: relative; isolation: isolate; padding-block: 8px 22px; }
+.drum-home-design .drum-home-intro .eyebrow {
+  display: inline-block;
+  color: var(--design-ink);
+  padding: 5px 12px;
+  font-size: clamp(9px, 1.3vw, 14px);
+  letter-spacing: .2em;
+}
+.drum-home-design .drum-home-intro h1 {
+  position: relative;
+  width: fit-content;
+  margin: 9px auto 0;
+  font: 600 clamp(44px, 7.5vw, 96px)/1.1 var(--font-ui);
+  letter-spacing: -.035em;
+}
+.home-title-placeholder { visibility: hidden; }
+.home-title-typing { position: absolute; inset: 0 auto auto 0; white-space: pre; }
+.home-title-cursor { position: absolute; }
+.drum-home-design .drum-home-intro p { margin-top: 8px; font-size: clamp(14px, 1.65vw, 20px); }
+.drum-home-design .home-kit { max-width: 900px; margin-top: 8px; }
+.drum-home-design .home-sound-note { margin-top: 2px; font-size: clamp(11px, 1.3vw, 15px); }
+.drum-home-design .drum-home-footer { min-height: 62px; border-color: #a59a8d; }
+.drum-home-design .drum-home-footer nav { gap: 4px; font: 600 14px var(--font-ui); }
+.drum-home-design .drum-home-footer a { padding: 7px 12px; border-radius: 20px; }
+.drum-home-design .drum-home-footer a:is(:hover, :focus-visible) { background: var(--design-stage); color: var(--design-ink); }
+@media (max-width: 760px) {
+  .drum-home-design .drum-home-main { padding-block: 20px; }
+  .drum-home-design .home-kit { max-width: 490px; margin-block: 12px 8px; }
+  .drum-home-design .drum-home-footer nav { font-size: 13px; }
+  .drum-home-design .drum-home-footer a { padding: 5px 8px; }
 }
