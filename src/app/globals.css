@@ -527,6 +527,123 @@ body { font-size:15px; word-break:keep-all; overflow-wrap:break-word; }
 .drum-home-sections > #skills { --section-background: #f2c75d; }
 .drum-home-sections > #works { --section-background: #24272c; }
 .drum-home-sections > #contact { --section-background: #dce7d4; }
+.contact-rig-hint { margin-top: 10px; }
+.contact-rig {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 30%);
+  align-items: center;
+  gap: clamp(16px, 3vw, 42px);
+  margin-top: clamp(24px, 5vw, 60px);
+}
+.contact-guitar { position: relative; }
+.contact-guitar > svg { display: block; width: 100%; }
+.contact-strings {
+  position: absolute;
+  inset: 28.95% 15.54% 52.1% 12.82%;
+  touch-action: none;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: crosshair;
+}
+.contact-gear { display: grid; gap: 12px; }
+.contact-amp {
+  padding: 9px;
+  border: 3px solid #241b16;
+  background: #41372e;
+  box-shadow: 4px 4px #241b16;
+}
+.contact-amp-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  background: #d2b68b;
+  color: #261e18;
+  font: 700 14px var(--font-pixel);
+  text-transform: uppercase;
+}
+.contact-amp-grille {
+  min-height: 64px;
+  margin-top: 6px;
+  border: 2px solid #241b16;
+  background: #615448 radial-gradient(#2e2620 1px, transparent 1px) 0 0 / 4px 4px;
+}
+.contact-pedals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.contact-pedal {
+  display: grid;
+  gap: 5px;
+  padding: 8px 6px 6px;
+  border: 2px solid #382a23;
+  background: #e0b577;
+  color: #241b16;
+  text-align: center;
+  font: 700 14px var(--font-pixel);
+  box-shadow: 2px 2px #382a23;
+}
+.contact-pedal[data-effect="echo"] { background: #9db8c7; }
+.contact-pedal[data-effect="tremolo"] { background: #b4c6a0; }
+.contact-pedal[data-effect="fuzz"] { background: #c8a7bd; }
+.contact-pedal-knobs { display: flex; justify-content: center; gap: 7px; }
+.contact-pedal-knobs i {
+  position: relative;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #2b231d;
+  border-radius: 50%;
+  background: #51443b;
+  box-shadow: 0 2px #382a23, inset 0 2px #76675a;
+}
+.contact-pedal-knobs i::after {
+  content: "";
+  position: absolute;
+  inset: 2px auto auto 50%;
+  width: 2px;
+  height: 5px;
+  background: #fff0d3;
+  transform-origin: 50% 6px;
+  transform: rotate(-35deg);
+}
+.contact-pedal-knobs i:last-child::after { transform: rotate(35deg); }
+.contact-pedal-mode { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.contact-pedal a { text-decoration: underline; text-underline-offset: 3px; }
+.contact-pedal button {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  min-height: 39px;
+  border: 1px solid #382a2370;
+  background: #382a231c;
+  cursor: pointer;
+}
+.contact-pedal-led {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #382a23;
+  background: #68534b;
+}
+.contact-pedal button[aria-pressed="true"] .contact-pedal-led {
+  background: #e9513a;
+  box-shadow: 0 0 5px #ff6248;
+}
+.contact-pedal-switch {
+  width: 20px;
+  height: 16px;
+  border: 2px solid #382a23;
+  border-radius: 50%;
+  background: #c9c6bd;
+  box-shadow: inset 0 2px #fff7e7, 0 2px #382a23;
+}
+.contact-pedal button:active .contact-pedal-switch { transform: translateY(2px); }
+@media (max-width: 650px) {
+  .contact-rig { grid-template-columns: 1fr; }
+}
 .drum-home-sections > #skills :is(.skills-heading .eyebrow, .skills-heading p, .skills-heading-note, .skills-scroll-hint) {
   color: #493c2c;
 }
