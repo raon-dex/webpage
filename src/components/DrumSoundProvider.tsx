@@ -5,6 +5,7 @@ import { Volume2, VolumeX } from "lucide-react";
 import { playDrum, type DrumSound } from "@/lib/drum-audio";
 import { playPianoNote } from "@/lib/piano-audio";
 import { playGuitarChord, type GuitarEffect } from "@/lib/guitar-audio";
+import { playLaunchpad } from "@/lib/launchpad-audio";
 
 const SoundContext = createContext<{
   muted: boolean;
@@ -13,7 +14,8 @@ const SoundContext = createContext<{
   play: (sound: DrumSound) => void;
   playNote: (semitone: number) => void;
   playChord: (effect: GuitarEffect | null) => void;
-}>({ muted: false, unavailable: false, toggle: () => {}, play: () => {}, playNote: () => {}, playChord: () => {} });
+  playPad: (index: number) => void;
+}>({ muted: false, unavailable: false, toggle: () => {}, play: () => {}, playNote: () => {}, playChord: () => {}, playPad: () => {} });
 
 export function DrumSoundProvider({ children }: { children: React.ReactNode }) {
   const [muted, setMuted] = useState(false);
@@ -39,6 +41,7 @@ export function DrumSoundProvider({ children }: { children: React.ReactNode }) {
       play: (sound) => playAudio((context) => playDrum(context, sound)),
       playNote: (semitone) => playAudio((context) => playPianoNote(context, semitone)),
       playChord: (effect) => playAudio((context) => playGuitarChord(context, effect)),
+      playPad: (index) => playAudio((context) => playLaunchpad(context, index)),
     }}>
       {children}
     </SoundContext.Provider>

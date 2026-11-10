@@ -61,7 +61,7 @@ export default function ContactSection({ heading: Heading = "h1" }: { heading?: 
     <section id="contact" className="portfolio-section page-width section-space" aria-labelledby="contact-title" tabIndex={-1}>
       <div className="section-heading"><Heading id="contact-title">Contact</Heading></div>
       <p className="contact-rig-hint">
-        {unavailable ? "Instrument audio is unavailable." : muted ? "Turn sound on to play." : "Click a string to start, then sweep across the strings. Tap a pedal to change the sound."}
+        {unavailable ? "Instrument audio is unavailable." : muted ? "Turn sound on to play." : "줄을 클릭하면 소리가 납니다. 다양한 이펙터와 함께 소리를 경험하고 프로필 링크를 확인해보세요."}
       </p>
       <div className="contact-rig">
         <div className="contact-guitar">

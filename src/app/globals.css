@@ -524,6 +524,7 @@ body { font-size:15px; word-break:keep-all; overflow-wrap:break-word; }
   background: var(--section-background, #fffdf9);
   pointer-events: none;
 }
+.drum-home-sections > #about { --section-background: #a8c2d1; }
 .drum-home-sections > #skills { --section-background: #f2c75d; }
 .drum-home-sections > #works { --section-background: #24272c; }
 .drum-home-sections > #contact { --section-background: #dce7d4; }

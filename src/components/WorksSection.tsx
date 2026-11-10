@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useDrumSound } from "@/components/DrumSoundProvider";
 import { projects } from "@/data/projects";
 
 export default function WorksSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   const [selected, setSelected] = useState(() => projects.find((project) => project.featured) ?? projects[0]);
+  const { playPad } = useDrumSound();
 
   return (
     <section id="works" className="portfolio-section page-width section-space" aria-labelledby="works-title" tabIndex={-1}>
@@ -14,14 +16,17 @@ export default function WorksSection({ heading: Heading = "h1" }: { heading?: "h
         <p>런치패드를 클릭하셔서 저의 Project와 Research를 확인해보세요!</p>
       </div>
       <div className="project-launchpad" role="group" aria-label="Works launchpad">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <button
             key={project.title}
             type="button"
             className="project-pad"
             aria-pressed={selected === project}
             aria-controls="launchpad-project"
-            onClick={() => setSelected(project)}
+            onClick={() => {
+              setSelected(project);
+              playPad(index);
+            }}
           >
             <Image src={`/images/projects/${project.image}`} alt="" width={32} height={32} />
             <span>{project.title}</span>
@@ -41,7 +46,6 @@ export default function WorksSection({ heading: Heading = "h1" }: { heading?: "h
           />
         </div>
         <div className="launchpad-copy">
-          <span className="eyebrow">{selected.category}</span>
           <h3>{selected.title}</h3>
           <p>{selected.description}</p>
           <ul aria-label="Project tags">
